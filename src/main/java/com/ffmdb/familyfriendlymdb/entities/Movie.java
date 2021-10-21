@@ -108,4 +108,18 @@ public class Movie implements Serializable {
     public void setRating(Rating rating) {
         this.rating = rating;
     }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", votesAverage=" + votesAverage +
+                ", posterPath='" + posterPath + '\'' +
+                ", language='" + language + '\'' +
+                ", numberOfVotes=" + numberOfVotes +
+                ", summary='" + summary + '\'' +
+                ", rating=" + rating.getStars() +
+                '}';
+    }
 }

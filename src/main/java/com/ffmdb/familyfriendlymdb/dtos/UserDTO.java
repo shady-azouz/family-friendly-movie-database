@@ -1,31 +1,30 @@
-package com.ffmdb.familyfriendlymdb.entities;
+package com.ffmdb.familyfriendlymdb.dtos;
 
-import javax.persistence.*;
+import com.ffmdb.familyfriendlymdb.entities.User;
 
-@Entity
-@Table(name = "user")
-public class User {
-    @Id
-    @GeneratedValue
-    @Column(name = "id")
+import javax.persistence.Column;
+
+public class UserDTO {
     private Integer id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "email")
     private String email;
-
-    @Column(name = "password")
     private String password;
 
-    public User(String name, String email, String password) {
+    public UserDTO(Integer id, String name, String email, String password) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    public User() {}
+    public UserDTO(User user) {
+        this.id = user.getId();
+        this.name = user.getName();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+    }
+
+    public UserDTO() {}
 
     public Integer getId() {
         return id;
@@ -61,7 +60,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
