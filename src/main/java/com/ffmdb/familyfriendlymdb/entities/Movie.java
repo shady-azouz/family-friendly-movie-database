@@ -2,6 +2,7 @@ package com.ffmdb.familyfriendlymdb.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "movie")
@@ -29,21 +30,29 @@ public class Movie implements Serializable {
     @Column(name = "summary")
     private String summary;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "rating_id", referencedColumnName = "id")
-    private Rating rating;
+    @Column(name = "average_rating")
+    private Short averageRating;
 
-    public Movie(String name, Double votesAverage, String posterPath, String language, Integer numberOfVotes, String summary, Rating rating) {
+    @OneToMany(targetEntity = Rating.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "rating_id", referencedColumnName = "id")
+    private List<Rating> ratings;
+
+    @ManyToMany(mappedBy = "movies")
+    private List<Genre> genres;
+
+    public Movie(String name, Double votesAverage, String posterPath, String language, Integer numberOfVotes, String summary, Short averageRating, List<Rating> ratings, List<Genre> genres) {
         this.name = name;
         this.votesAverage = votesAverage;
         this.posterPath = posterPath;
         this.language = language;
         this.numberOfVotes = numberOfVotes;
         this.summary = summary;
-        this.rating = rating;
+        this.averageRating = averageRating;
+        this.ratings = ratings;
+        this.genres = genres;
     }
 
-    public Movie() {}
+    public Movie(){}
 
     public Integer getId() {
         return id;
@@ -101,12 +110,28 @@ public class Movie implements Serializable {
         this.summary = summary;
     }
 
-    public Rating getRating() {
-        return rating;
+    public Short getAverageRating() {
+        return averageRating;
     }
 
-    public void setRating(Rating rating) {
-        this.rating = rating;
+    public void setAverageRating(Short averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 
     @Override
@@ -119,7 +144,9 @@ public class Movie implements Serializable {
                 ", language='" + language + '\'' +
                 ", numberOfVotes=" + numberOfVotes +
                 ", summary='" + summary + '\'' +
-                ", rating=" + rating.getStars() +
+                ", averageRating=" + averageRating +
+                ", ratings=" + ratings +
+                ", genres=" + genres +
                 '}';
     }
 }

@@ -2,8 +2,6 @@ package com.ffmdb.familyfriendlymdb.dtos;
 
 import com.ffmdb.familyfriendlymdb.entities.Rating;
 
-import javax.persistence.Column;
-
 public class RatingDTO {
     private Integer id;
     private Short stars;

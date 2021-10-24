@@ -16,10 +16,9 @@ public class MovieDTO {
     private String language;
     private Integer numberOfVotes;
     private String summary;
-    private Short ratingStars;
-    private String ratingComment;
+    private Short averageRating;
 
-    public MovieDTO(Integer id, String name, Double votesAverage, String posterPath, String language, Integer numberOfVotes, String summary, Short ratingStars, String ratingComment) {
+    public MovieDTO(Integer id, String name, Double votesAverage, String posterPath, String language, Integer numberOfVotes, String summary, Short averageRating) {
         this.id = id;
         this.name = name;
         this.votesAverage = votesAverage;
@@ -27,8 +26,7 @@ public class MovieDTO {
         this.language = language;
         this.numberOfVotes = numberOfVotes;
         this.summary = summary;
-        this.ratingStars = ratingStars;
-        this.ratingComment = ratingComment;
+        this.averageRating = averageRating;
     }
 
     public MovieDTO(Movie movie){
@@ -39,8 +37,7 @@ public class MovieDTO {
         this.language = movie.getLanguage();
         this.numberOfVotes = movie.getNumberOfVotes();
         this.summary = movie.getSummary();
-        this.ratingStars = movie.getRating().getStars();
-        this.ratingComment  = movie.getRating().getComment();
+        this.averageRating = movie.getAverageRating();
     }
 
     public MovieDTO() {}
@@ -101,19 +98,11 @@ public class MovieDTO {
         this.summary = summary;
     }
 
-    public Short getRatingStars() {
-        return ratingStars;
+    public Short getAverageRating() {
+        return averageRating;
     }
 
-    public void setRatingStars(Short ratingStars) {
-        this.ratingStars = ratingStars;
-    }
-
-    public String getRatingComment() {
-        return ratingComment;
-    }
-
-    public void setRatingComment(String ratingComment) {
-        this.ratingComment = ratingComment;
+    public void setAverageRating(Short averageRating) {
+        this.averageRating = averageRating;
     }
 }
