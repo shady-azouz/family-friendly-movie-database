@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name = "movie")
 public class Movie implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -37,7 +37,11 @@ public class Movie implements Serializable {
     @JoinColumn(name = "rating_id", referencedColumnName = "id")
     private List<Rating> ratings;
 
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany
+    @JoinTable(
+            name = "movie_genres",
+            joinColumns = @JoinColumn(name = "genre_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id"))
     private List<Genre> genres;
 
     public Movie(String name, Double votesAverage, String posterPath, String language, Integer numberOfVotes, String summary, Short averageRating, List<Rating> ratings, List<Genre> genres) {

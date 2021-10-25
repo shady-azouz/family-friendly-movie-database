@@ -5,17 +5,16 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "rating")
+@Table(name = "genre")
 public class Genre implements Serializable {
     @Id
-    @GeneratedValue
     @Column(name = "id")
     private Integer id;
 
     @Column(name = "name")
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "genres")
     private List<Movie> movies;
 
     public Genre(String name, List<Movie> movies) {

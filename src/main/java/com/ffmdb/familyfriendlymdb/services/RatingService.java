@@ -3,10 +3,12 @@ package com.ffmdb.familyfriendlymdb.services;
 import com.ffmdb.familyfriendlymdb.entities.Rating;
 import com.ffmdb.familyfriendlymdb.repositories.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class RatingService {
     @Autowired
     RatingRepository ratingRepository;
