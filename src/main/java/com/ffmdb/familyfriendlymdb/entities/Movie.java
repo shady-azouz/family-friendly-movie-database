@@ -42,6 +42,9 @@ public class Movie implements Serializable {
     @Column(name = "release_date")
     private Date releaseDate;
 
+    @Column(name = "flags")
+    private Integer flags;
+
     @OneToMany(targetEntity = Rating.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "rating_id", referencedColumnName = "id")
     private List<Rating> ratings;
@@ -62,6 +65,7 @@ public class Movie implements Serializable {
         this.summary = movieDTO.getOverview();
         this.adult = movieDTO.isAdult();
         this.releaseDate = movieDTO.getRelease_date();
+        this.flags = 0;
         this.genres = new ArrayList<>();
     }
 
