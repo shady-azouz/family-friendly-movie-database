@@ -1,7 +1,13 @@
 package com.ffmdb.familyfriendlymdb.entities;
 
+import com.ffmdb.familyfriendlymdb.dtos.MovieDTO;
+import com.ffmdb.familyfriendlymdb.services.GenreService;
+import org.springframework.web.servlet.tags.form.TextareaTag;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,8 +21,8 @@ public class Movie implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "votes_average")
-    private Double votesAverage;
+    @Column(name = "vote_average")
+    private Double voteAverage;
 
     @Column(name = "poster_path")
     private String posterPath;
@@ -27,11 +33,14 @@ public class Movie implements Serializable {
     @Column(name = "number_of_votes")
     private Integer numberOfVotes;
 
-    @Column(name = "summary")
+    @Column(name = "summary", columnDefinition = "TEXT")
     private String summary;
 
-    @Column(name = "average_rating")
-    private Short averageRating;
+    @Column(name = "adult")
+    private boolean adult;
+
+    @Column(name = "release_date")
+    private Date releaseDate;
 
     @OneToMany(targetEntity = Rating.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "rating_id", referencedColumnName = "id")
@@ -44,19 +53,19 @@ public class Movie implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "movie_id"))
     private List<Genre> genres;
 
-    public Movie(String name, Double votesAverage, String posterPath, String language, Integer numberOfVotes, String summary, Short averageRating, List<Rating> ratings, List<Genre> genres) {
-        this.name = name;
-        this.votesAverage = votesAverage;
-        this.posterPath = posterPath;
-        this.language = language;
-        this.numberOfVotes = numberOfVotes;
-        this.summary = summary;
-        this.averageRating = averageRating;
-        this.ratings = ratings;
-        this.genres = genres;
+    public Movie(MovieDTO movieDTO){
+        this.name = movieDTO.getTitle();
+        this.voteAverage = movieDTO.getVote_average();
+        this.posterPath = movieDTO.getPoster_path();
+        this.language = movieDTO.getOriginal_language();
+        this.numberOfVotes = movieDTO.getVote_count();
+        this.summary = movieDTO.getOverview();
+        this.adult = movieDTO.isAdult();
+        this.releaseDate = movieDTO.getRelease_date();
+        this.genres = new ArrayList<>();
     }
 
-    public Movie(){}
+    private Movie(){}
 
     public Integer getId() {
         return id;
@@ -74,12 +83,12 @@ public class Movie implements Serializable {
         this.name = name;
     }
 
-    public Double getVotesAverage() {
-        return votesAverage;
+    public Double getVoteAverage() {
+        return voteAverage;
     }
 
-    public void setVotesAverage(Double votesAverage) {
-        this.votesAverage = votesAverage;
+    public void setVoteAverage(Double voteAverage) {
+        this.voteAverage = voteAverage;
     }
 
     public String getPosterPath() {
@@ -114,12 +123,20 @@ public class Movie implements Serializable {
         this.summary = summary;
     }
 
-    public Short getAverageRating() {
-        return averageRating;
+    public boolean isAdult() {
+        return adult;
     }
 
-    public void setAverageRating(Short averageRating) {
-        this.averageRating = averageRating;
+    public void setAdult(boolean adult) {
+        this.adult = adult;
+    }
+
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public List<Rating> getRatings() {
@@ -136,21 +153,5 @@ public class Movie implements Serializable {
 
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
-    }
-
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", votesAverage=" + votesAverage +
-                ", posterPath='" + posterPath + '\'' +
-                ", language='" + language + '\'' +
-                ", numberOfVotes=" + numberOfVotes +
-                ", summary='" + summary + '\'' +
-                ", averageRating=" + averageRating +
-                ", ratings=" + ratings +
-                ", genres=" + genres +
-                '}';
     }
 }

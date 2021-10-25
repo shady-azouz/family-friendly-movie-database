@@ -1,12 +1,13 @@
 package com.ffmdb.familyfriendlymdb.tmdbJSON;
 
+import com.ffmdb.familyfriendlymdb.dtos.MovieDTO;
 import com.ffmdb.familyfriendlymdb.entities.Movie;
 
 import java.util.List;
 
 public class TmdbMovie {
     private Integer page;
-    private List<Movie> results;
+    private List<MovieDTO> results;
 
     public TmdbMovie(){}
 
@@ -18,11 +19,11 @@ public class TmdbMovie {
         this.page = page;
     }
 
-    public List<Movie> getResults() {
+    public List<MovieDTO> getResults() {
         return results;
     }
 
-    public void setResults(List<Movie> results) {
+    public void setResults(List<MovieDTO> results) {
         this.results = results;
     }
 }

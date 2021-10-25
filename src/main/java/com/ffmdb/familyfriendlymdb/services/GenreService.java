@@ -37,4 +37,8 @@ public class GenreService {
         genreRepository.findAll().forEach(genres::add);
         return genres;
     }
+
+    public Genre getGenreById(Integer id){
+        return genreRepository.findById(id).orElse(null);
+    }
 }

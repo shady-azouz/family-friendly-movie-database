@@ -1,46 +1,21 @@
 package com.ffmdb.familyfriendlymdb.dtos;
 
-import com.ffmdb.familyfriendlymdb.entities.Movie;
-import com.ffmdb.familyfriendlymdb.entities.Rating;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import java.sql.Date;
+import java.util.List;
 
 public class MovieDTO {
     private Integer id;
-    private String name;
-    private Double votesAverage;
-    private String posterPath;
-    private String language;
-    private Integer numberOfVotes;
-    private String summary;
-    private Short averageRating;
+    private String title;
+    private Double vote_average;
+    private String poster_path;
+    private String original_language;
+    private Integer vote_count;
+    private String overview;
+    private List<Integer> genre_ids;
+    private boolean adult;
+    private Date release_date;
 
-    public MovieDTO(Integer id, String name, Double votesAverage, String posterPath, String language, Integer numberOfVotes, String summary, Short averageRating) {
-        this.id = id;
-        this.name = name;
-        this.votesAverage = votesAverage;
-        this.posterPath = posterPath;
-        this.language = language;
-        this.numberOfVotes = numberOfVotes;
-        this.summary = summary;
-        this.averageRating = averageRating;
-    }
-
-    public MovieDTO(Movie movie){
-        this.id = movie.getId();
-        this.name = movie.getName();
-        this.votesAverage = movie.getVotesAverage();
-        this.posterPath = movie.getPosterPath();
-        this.language = movie.getLanguage();
-        this.numberOfVotes = movie.getNumberOfVotes();
-        this.summary = movie.getSummary();
-        this.averageRating = movie.getAverageRating();
-    }
-
-    public MovieDTO() {}
+    public MovieDTO(){}
 
     public Integer getId() {
         return id;
@@ -50,59 +25,75 @@ public class MovieDTO {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public Double getVotesAverage() {
-        return votesAverage;
+    public Double getVote_average() {
+        return vote_average;
     }
 
-    public void setVotesAverage(Double votesAverage) {
-        this.votesAverage = votesAverage;
+    public void setVote_average(Double vote_average) {
+        this.vote_average = vote_average;
     }
 
-    public String getPosterPath() {
-        return posterPath;
+    public String getPoster_path() {
+        return poster_path;
     }
 
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
+    public void setPoster_path(String poster_path) {
+        this.poster_path = poster_path;
     }
 
-    public String getLanguage() {
-        return language;
+    public String getOriginal_language() {
+        return original_language;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setOriginal_language(String original_language) {
+        this.original_language = original_language;
     }
 
-    public Integer getNumberOfVotes() {
-        return numberOfVotes;
+    public Integer getVote_count() {
+        return vote_count;
     }
 
-    public void setNumberOfVotes(Integer numberOfVotes) {
-        this.numberOfVotes = numberOfVotes;
+    public void setVote_count(Integer vote_count) {
+        this.vote_count = vote_count;
     }
 
-    public String getSummary() {
-        return summary;
+    public String getOverview() {
+        return overview;
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void setOverview(String overview) {
+        this.overview = overview;
     }
 
-    public Short getAverageRating() {
-        return averageRating;
+    public List<Integer> getGenre_ids() {
+        return genre_ids;
     }
 
-    public void setAverageRating(Short averageRating) {
-        this.averageRating = averageRating;
+    public void setGenre_ids(List<Integer> genre_ids) {
+        this.genre_ids = genre_ids;
+    }
+
+    public boolean isAdult() {
+        return adult;
+    }
+
+    public void setAdult(boolean adult) {
+        this.adult = adult;
+    }
+
+    public Date getRelease_date() {
+        return release_date;
+    }
+
+    public void setRelease_date(Date release_date) {
+        this.release_date = release_date;
     }
 }
