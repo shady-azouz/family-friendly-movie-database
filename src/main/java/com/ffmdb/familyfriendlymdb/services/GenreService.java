@@ -18,7 +18,6 @@ public class GenreService {
 
     @PostConstruct
     public void loadGenres() {
-        System.out.println("Entered into loadGenres()");
         RestTemplate restTemplate = new RestTemplate();
         String key = "a8bd7f3d0cff0c86e330f635ea81ce95";
         TmdbGenre response =

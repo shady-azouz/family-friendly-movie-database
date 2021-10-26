@@ -1,5 +1,7 @@
 package com.ffmdb.familyfriendlymdb.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -14,6 +16,7 @@ public class Genre implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "genres")
     private List<Movie> movies;
 

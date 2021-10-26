@@ -1,5 +1,6 @@
 package com.ffmdb.familyfriendlymdb.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ffmdb.familyfriendlymdb.dtos.MovieDTO;
 import com.ffmdb.familyfriendlymdb.services.GenreService;
 import org.springframework.web.servlet.tags.form.TextareaTag;
@@ -49,6 +50,7 @@ public class Movie implements Serializable {
     @JoinColumn(name = "rating_id", referencedColumnName = "id")
     private List<Rating> ratings;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "movie_genres",

@@ -1,9 +1,7 @@
 package com.ffmdb.familyfriendlymdb.services;
 
 import com.ffmdb.familyfriendlymdb.dtos.MovieDTO;
-import com.ffmdb.familyfriendlymdb.entities.Genre;
 import com.ffmdb.familyfriendlymdb.entities.Movie;
-import com.ffmdb.familyfriendlymdb.repositories.GenreRepository;
 import com.ffmdb.familyfriendlymdb.repositories.MovieRepository;
 import com.ffmdb.familyfriendlymdb.tmdbJSON.TmdbMovie;
 import org.springframework.beans.factory.annotation.Autowired;
