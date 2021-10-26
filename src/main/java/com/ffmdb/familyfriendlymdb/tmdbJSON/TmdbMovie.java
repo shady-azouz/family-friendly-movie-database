@@ -1,7 +1,6 @@
 package com.ffmdb.familyfriendlymdb.tmdbJSON;
 
 import com.ffmdb.familyfriendlymdb.dtos.MovieDTO;
-import com.ffmdb.familyfriendlymdb.entities.Movie;
 
 import java.util.List;
 

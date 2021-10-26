@@ -2,8 +2,6 @@ package com.ffmdb.familyfriendlymdb.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ffmdb.familyfriendlymdb.dtos.MovieDTO;
-import com.ffmdb.familyfriendlymdb.services.GenreService;
-import org.springframework.web.servlet.tags.form.TextareaTag;
 
 import javax.persistence.*;
 import java.io.Serializable;

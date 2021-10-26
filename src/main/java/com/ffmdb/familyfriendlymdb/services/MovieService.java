@@ -20,7 +20,7 @@ public class MovieService {
     private GenreService genreService;
 
     @PostConstruct
-    public void loadMovies() {
+    private void loadMovies() {
         RestTemplate restTemplate = new RestTemplate();
         String key = "a8bd7f3d0cff0c86e330f635ea81ce95";
         boolean isFull = false;
@@ -55,5 +55,13 @@ public class MovieService {
         List<Movie> movies = new ArrayList<>();
         movieRepository.findAll().forEach(movies::add);
         return movies;
+    }
+
+    public void deleteMovie(Integer movie_id){
+        movieRepository.deleteById(movie_id);
+    }
+
+    public void deleteMovie(Movie movie){
+        movieRepository.delete(movie);
     }
 }

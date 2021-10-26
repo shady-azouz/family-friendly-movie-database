@@ -2,7 +2,6 @@ package com.ffmdb.familyfriendlymdb.tmdbJSON;
 
 import com.ffmdb.familyfriendlymdb.entities.Genre;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TmdbGenre {

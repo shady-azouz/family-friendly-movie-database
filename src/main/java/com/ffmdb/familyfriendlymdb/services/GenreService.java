@@ -17,7 +17,7 @@ public class GenreService {
     GenreRepository genreRepository;
 
     @PostConstruct
-    public void loadGenres() {
+    private void loadGenres() {
         RestTemplate restTemplate = new RestTemplate();
         String key = "a8bd7f3d0cff0c86e330f635ea81ce95";
         TmdbGenre response =

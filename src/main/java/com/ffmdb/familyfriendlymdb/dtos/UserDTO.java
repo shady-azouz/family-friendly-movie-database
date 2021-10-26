@@ -5,34 +5,26 @@ import com.ffmdb.familyfriendlymdb.entities.User;
 import javax.persistence.Column;
 
 public class UserDTO {
-    private Integer id;
     private String name;
     private String email;
     private String password;
+    private String role;
 
-    public UserDTO(Integer id, String name, String email, String password) {
-        this.id = id;
+    public UserDTO(String name, String email, String password, String role) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     public UserDTO(User user) {
-        this.id = user.getId();
         this.name = user.getName();
         this.email = user.getEmail();
         this.password = user.getPassword();
+        this.role = user.getRole();
     }
 
     public UserDTO() {}
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -58,13 +50,21 @@ public class UserDTO {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "UserDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

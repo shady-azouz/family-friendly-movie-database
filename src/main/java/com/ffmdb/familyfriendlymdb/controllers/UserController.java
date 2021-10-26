@@ -1,6 +1,6 @@
 package com.ffmdb.familyfriendlymdb.controllers;
 
-import com.ffmdb.familyfriendlymdb.services.UserService;
+import com.ffmdb.familyfriendlymdb.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
 
 }
