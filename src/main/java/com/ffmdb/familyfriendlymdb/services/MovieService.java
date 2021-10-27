@@ -1,6 +1,7 @@
 package com.ffmdb.familyfriendlymdb.services;
 
 import com.ffmdb.familyfriendlymdb.dtos.MovieDTO;
+import com.ffmdb.familyfriendlymdb.entities.Genre;
 import com.ffmdb.familyfriendlymdb.entities.Movie;
 import com.ffmdb.familyfriendlymdb.repositories.MovieRepository;
 import com.ffmdb.familyfriendlymdb.tmdbJSON.TmdbMovie;
@@ -26,8 +27,8 @@ public class MovieService {
         boolean isFull = false;
         int i = 1;
         int count = 0;
-        while(!isFull){
-            if(count < 100){
+        while (!isFull) {
+            if (count < 100) {
                 TmdbMovie response =
                         restTemplate.getForObject(
                                 "https://api.themoviedb.org/3/movie/top_rated"
@@ -35,14 +36,15 @@ public class MovieService {
                                         + "&page=" + i
                                         + "&language=en-US",
                                 TmdbMovie.class);
-                for(MovieDTO movieDTO : response.getResults()){
+                for (MovieDTO movieDTO : response.getResults()) {
                     Movie movie = new Movie(movieDTO);
-                    if(!movie.isAdult()){
-                        for(Integer genre_id : movieDTO.getGenre_ids()) {
+                    if (!movie.isAdult()) {
+                        for (Integer genre_id : movieDTO.getGenre_ids()) {
                             movie.getGenres().add(genreService.getGenreById(genre_id));
                         }
                         movieRepository.save(movie);
-                        count++; i++;
+                        count++;
+                        i++;
                     }
                 }
             } else {
@@ -51,17 +53,48 @@ public class MovieService {
         }
     }
 
-    public List<Movie> getAllMovies(){
+    public List<Movie> getAllMovies() {
         List<Movie> movies = new ArrayList<>();
         movieRepository.findAll().forEach(movies::add);
         return movies;
     }
 
-    public void deleteMovie(Integer movie_id){
+    public Movie getMovieById(Integer id) {
+        return movieRepository.findById(id).orElse(null);
+    }
+
+    public List<Movie> getMovieByGenre(Integer genreId) {
+        List<Movie> returnMovies = new ArrayList<>();
+        for (Movie movie : movieRepository.findAll()) {
+            boolean hasGenre = false;
+            for (Genre genre : movie.getGenres()) {
+                if (genre.getId() == genreId) {
+                    hasGenre = true;
+                    break;
+                }
+            }
+            if (hasGenre) {
+                returnMovies.add(movie);
+            }
+        }
+        return returnMovies;
+    }
+
+    public Integer flagMovie(Integer movieId) {
+        Movie movie = movieRepository.findById(movieId).orElse(null);
+        if (movie != null) {
+            movie.setFlags(movie.getFlags() + 1);
+            movieRepository.save(movie);
+            return movie.getFlags();
+        }
+        return 0;
+    }
+
+    public void deleteMovie(Integer movie_id) {
         movieRepository.deleteById(movie_id);
     }
 
-    public void deleteMovie(Movie movie){
+    public void deleteMovie(Movie movie) {
         movieRepository.delete(movie);
     }
 }

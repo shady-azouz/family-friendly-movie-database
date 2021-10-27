@@ -56,7 +56,7 @@ public class Movie implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "movie_id"))
     private List<Genre> genres;
 
-    public Movie(MovieDTO movieDTO){
+    public Movie(MovieDTO movieDTO) {
         this.name = movieDTO.getTitle();
         this.voteAverage = movieDTO.getVote_average();
         this.posterPath = movieDTO.getPoster_path();
@@ -69,7 +69,8 @@ public class Movie implements Serializable {
         this.genres = new ArrayList<>();
     }
 
-    private Movie(){}
+    private Movie() {
+    }
 
     public Integer getId() {
         return id;
@@ -157,5 +158,13 @@ public class Movie implements Serializable {
 
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
+    }
+
+    public Integer getFlags() {
+        return flags;
+    }
+
+    public void setFlags(Integer flags) {
+        this.flags = flags;
     }
 }

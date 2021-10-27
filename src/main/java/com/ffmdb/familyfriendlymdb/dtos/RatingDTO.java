@@ -3,40 +3,32 @@ package com.ffmdb.familyfriendlymdb.dtos;
 import com.ffmdb.familyfriendlymdb.entities.Rating;
 
 public class RatingDTO {
-    private Integer id;
-    private Short stars;
+    private Double stars;
     private Integer movieId;
     private String comment;
+    private Integer userId;
 
-    public RatingDTO(Integer id, Short stars, Integer movieId, String comment) {
-        this.id = id;
+    public RatingDTO(Double stars, Integer movieId, String comment, Integer userId) {
         this.stars = stars;
         this.movieId = movieId;
         this.comment = comment;
+        this.userId = userId;
     }
 
     public RatingDTO(Rating rating) {
-        this.id = rating.getId();
         this.stars = rating.getStars();
         this.movieId = rating.getMovieId();
         this.comment = rating.getComment();
     }
 
-    public RatingDTO(){}
-
-    public Integer getId() {
-        return id;
+    public RatingDTO() {
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Short getStars() {
+    public Double getStars() {
         return stars;
     }
 
-    public void setStars(Short stars) {
+    public void setStars(Double stars) {
         this.stars = stars;
     }
 
@@ -56,13 +48,21 @@ public class RatingDTO {
         this.comment = comment;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "RatingDTO{" +
-                "id=" + id +
-                ", stars=" + stars +
+                "stars=" + stars +
                 ", movieId=" + movieId +
                 ", comment='" + comment + '\'' +
+                ", userId=" + userId +
                 '}';
     }
 }

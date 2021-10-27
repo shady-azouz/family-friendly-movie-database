@@ -13,13 +13,21 @@ public class RatingService {
     @Autowired
     RatingRepository ratingRepository;
 
-    public List<Rating> getAllRatings(){
-        List<Rating> ratings = new ArrayList<>();
-        ratingRepository.findAll().forEach(ratings::add);
-        return ratings;
+    public List<Rating> getAllRatings() {
+        return ratingRepository.findAll();
     }
 
-    public void addRating(Rating rating){
+    public List<Rating> getByUserId(Integer userId) {
+        List<Rating> returnRatings = new ArrayList<>();
+        for (Rating rating : getAllRatings()) {
+            if (rating.getUserId() == userId) {
+                returnRatings.add(rating);
+            }
+        }
+        return returnRatings;
+    }
+
+    public void addRating(Rating rating) {
         ratingRepository.save(rating);
     }
 }

@@ -2,12 +2,25 @@ package com.ffmdb.familyfriendlymdb.dtos;
 
 import com.ffmdb.familyfriendlymdb.entities.User;
 
-import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class UserDTO {
+    @NotNull
+    @NotEmpty
     private String name;
-    private String email;
+
+    @NotNull
+    @NotEmpty
     private String password;
+    private String matchingPassword;
+
+    @NotNull
+    @NotEmpty
+    private String email;
+
+    @NotNull
+    @NotEmpty
     private String role;
 
     public UserDTO(String name, String email, String password, String role) {
@@ -24,7 +37,8 @@ public class UserDTO {
         this.role = user.getRole();
     }
 
-    public UserDTO() {}
+    public UserDTO() {
+    }
 
     public String getName() {
         return name;
@@ -58,12 +72,21 @@ public class UserDTO {
         this.role = role;
     }
 
+    public String getMatchingPassword() {
+        return matchingPassword;
+    }
+
+    public void setMatchingPassword(String matchingPassword) {
+        this.matchingPassword = matchingPassword;
+    }
+
     @Override
     public String toString() {
         return "UserDTO{" +
                 "name='" + name + '\'' +
-                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", matchingPassword='" + matchingPassword + '\'' +
+                ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 '}';
     }
