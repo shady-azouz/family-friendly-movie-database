@@ -42,10 +42,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/users/signIn").permitAll()
                 .antMatchers("/users/signUp").permitAll()
-//                .antMatchers("/movies/topMovies").hasRole("user")
                 .antMatchers("/movies/addRating").hasRole("user")
-                .antMatchers("/movies/hideMovie").hasRole("admin")
-                .antMatchers("/movies/showMovie").hasRole("user")
+                .antMatchers("/movies/deleteMovie/*").hasRole("admin")
+                .antMatchers("/movies/topMovies").hasRole("user")
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

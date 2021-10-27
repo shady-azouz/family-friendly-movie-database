@@ -1,5 +1,6 @@
 package com.ffmdb.familyfriendlymdb.entities;
 
+import com.ffmdb.familyfriendlymdb.dtos.UserDTO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,6 +34,13 @@ public class User implements UserDetails {
 
     @Column(name = "role")
     private String role;
+
+    public User(UserDTO userDTO) {
+        this.email = userDTO.getEmail();
+        this.password = userDTO.getPassword();
+        this.role = userDTO.getRole();
+        this.name = userDTO.getName();
+    }
 
     public User(String name, String email, String password, String role) {
         this.name = name;

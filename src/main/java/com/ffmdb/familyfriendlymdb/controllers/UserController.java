@@ -1,5 +1,6 @@
 package com.ffmdb.familyfriendlymdb.controllers;
 
+import com.ffmdb.familyfriendlymdb.dtos.UserDTO;
 import com.ffmdb.familyfriendlymdb.security.JwtUtil;
 import com.ffmdb.familyfriendlymdb.security.models.AuthenticationRequest;
 import com.ffmdb.familyfriendlymdb.security.models.AuthenticationResponse;
@@ -10,12 +11,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -27,7 +26,7 @@ public class UserController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    @RequestMapping(value = "/users/signIn", method = RequestMethod.POST)
+    @RequestMapping(value = "/signIn", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
         try {
             authenticationManager.authenticate(
@@ -42,8 +41,9 @@ public class UserController {
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 
-    @RequestMapping(value = "/users/signUp", method = RequestMethod.POST)
-    public void signUp() {
-
+    @RequestMapping(value = "/signUp", method = RequestMethod.POST)
+    @ResponseBody
+    public String signUp(@RequestBody UserDTO userDTO) {
+        return userService.registerNewUserAccount(userDTO);
     }
 }

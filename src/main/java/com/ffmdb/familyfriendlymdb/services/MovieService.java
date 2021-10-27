@@ -90,8 +90,12 @@ public class MovieService {
         return 0;
     }
 
-    public void deleteMovie(Integer movie_id) {
-        movieRepository.deleteById(movie_id);
+    public String deleteMovie(Integer movieId) {
+        if (movieRepository.findById(movieId).isEmpty()) {
+            return "Movie doesn't exist";
+        }
+        movieRepository.deleteById(movieId);
+        return "Movie Deleted Successfully";
     }
 
     public void deleteMovie(Movie movie) {

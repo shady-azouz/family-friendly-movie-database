@@ -52,9 +52,10 @@ public class MovieController {
         return likedMovies;
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/deletemovie/{id}")
-    public void deleteMovie(@PathVariable Integer movie_id) {
-        movieService.deleteMovie(movie_id);
+    @RequestMapping(method = RequestMethod.DELETE, value = "/deleteMovie/{id}")
+    @ResponseBody
+    public String deleteMovie(@PathVariable("id") Integer movie_id) {
+        return movieService.deleteMovie(movie_id);
     }
 
     @RequestMapping(value = "/addFlag/{id}")

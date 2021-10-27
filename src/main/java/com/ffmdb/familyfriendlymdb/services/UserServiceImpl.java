@@ -1,5 +1,6 @@
 package com.ffmdb.familyfriendlymdb.services;
 
+import com.ffmdb.familyfriendlymdb.dtos.UserDTO;
 import com.ffmdb.familyfriendlymdb.entities.User;
 import com.ffmdb.familyfriendlymdb.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class UserServiceImpl implements UserService {
     private void createUsers() {
         User user = new User("Shady Azouz", "shady.azouz@gmail.com", "dummyPassword", "ROLE_user");
         userRepository.save(user);
-        user = new User("Hussain", "hussain@gmail.com", "dummyPassword", "ROLE_admin");
+        user = new User("Hussain", "hyahya@sumerge.com", "dummyPassword", "ROLE_admin");
         userRepository.save(user);
     }
 
@@ -39,17 +40,21 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(s).orElse(null);
     }
 
-//    public User registerNewUserAccount(UserDTO userDto) throws UserAlreadyExistException {
-//        if (emailExist(userDto.getEmail())) {
-//            throw new UserAlreadyExistException("There is an account with that email address: "
-//                    + userDto.getEmail());
-//        }
-//
-//        // the rest of the registration operation
-//    }
-//    private boolean emailExist(String email) {
-//        return userRepository.findByEmail(email) != null;
-//    }
+    public String registerNewUserAccount(UserDTO userDto) {
+        if (emailExist(userDto.getEmail())) {
+            return "Email: " + userDto.getEmail() + " Already Registered";
+        }
+        if (userDto.getPassword().matches(userDto.getMatchingPassword())) {
+            User newUser = new User(userDto);
+            userRepository.save(newUser);
+            return "User: " + userDto.getEmail() + " Registered";
+        }
+        return "Password doesn't match Repeated Password";
+    }
+
+    private boolean emailExist(String email) {
+        return !userRepository.findById(email).isEmpty();
+    }
 
 //    public User loadUserByUsername(String email){
 //        return userRepository.findById(email).orElse(null);
