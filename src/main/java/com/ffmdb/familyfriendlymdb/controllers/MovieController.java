@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("/getMovies")
 public class MovieController {
 
     @Autowired
     private MovieService movieService;
 
-    @RequestMapping("/topmovies")
+    @RequestMapping(value = "/topMovies", method = RequestMethod.GET)
     public List<Movie> getTopMovies(){
         return movieService.getAllMovies();
     }

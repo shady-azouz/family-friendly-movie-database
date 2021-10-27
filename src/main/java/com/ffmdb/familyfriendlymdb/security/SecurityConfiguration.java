@@ -1,5 +1,6 @@
 package com.ffmdb.familyfriendlymdb.security;
 
+import com.ffmdb.familyfriendlymdb.filters.JWTRequestFilter;
 import com.ffmdb.familyfriendlymdb.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,8 +22,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserServiceImpl userService;
+
     @Autowired
-    private JwtRequestFilter jwtRequestFilter;
+    private JWTRequestFilter jwtRequestFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -40,6 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/users/signIn").permitAll()
                 .antMatchers("/users/signUp").permitAll()
+                .antMatchers("/getMovies/topMovies").hasRole("user")
                 .antMatchers("/movies/hideMovie").hasRole("admin")
                 .antMatchers("/movies/showMovie").hasRole("user")
                 .anyRequest().authenticated()

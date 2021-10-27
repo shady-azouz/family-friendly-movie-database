@@ -14,7 +14,8 @@ import java.util.function.Function;
 @Service
 public class JwtUtil {
     public String extractUsername(String token) {
-        return extractClaim(token, Claims::getSubject);
+        String output = extractClaim(token, Claims::getSubject);
+        return output;
     }
 
     public Date extractExpiration(String token) {
@@ -27,8 +28,7 @@ public class JwtUtil {
     }
 
     private Claims extractAllClaims(String token) {
-        System.out.println(token);
-        return Jwts.parser().setSigningKey("secret").parseClaimsJws(token.substring(7)).getBody();
+        return Jwts.parser().setSigningKey("secret").parseClaimsJws(token).getBody();
     }
 
     private boolean isTokenExpired(String token) {
