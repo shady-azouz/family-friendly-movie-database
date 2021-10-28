@@ -17,10 +17,10 @@ public class RatingService {
         return ratingRepository.findAll();
     }
 
-    public List<Rating> getByUserId(Integer userId) {
+    public List<Rating> getByUserId(String userId) {
         List<Rating> returnRatings = new ArrayList<>();
         for (Rating rating : getAllRatings()) {
-            if (rating.getUserId() == userId) {
+            if (rating.getUserId().matches(userId)) {
                 returnRatings.add(rating);
             }
         }

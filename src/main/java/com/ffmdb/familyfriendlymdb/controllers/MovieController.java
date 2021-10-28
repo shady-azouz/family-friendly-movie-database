@@ -30,7 +30,7 @@ public class MovieController {
 
     @RequestMapping(value = "/getRecommendations/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Set<Movie> getRecommendedMovies(@PathVariable("id") Integer userId) {
+    public Set<Movie> getRecommendedMovies(@PathVariable("id") String userId) {
         List<Rating> ratings = ratingService.getByUserId(userId);
         Set<Movie> likedMovies = new HashSet<>();
         Set<Genre> likedGenres = new HashSet<>();
@@ -85,7 +85,7 @@ public class MovieController {
             movie.setVoteAverage(newAverage);
             movie.setNumberOfVotes(numOfVotes + 1);
             ratingService.addRating(rating);
-            return "Added Rating Successfully";
+            return "Rating Added Successfully";
         }
         return "Invalid Movie ID!";
     }

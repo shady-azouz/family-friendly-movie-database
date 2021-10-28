@@ -31,7 +31,7 @@ class RatingServiceTest {
     @DisplayName("get all ratings")
     void getAllRatings() {
         List<Rating> ratings = Arrays.asList(
-                new Rating(8.5, 1, "no Comment", 1)
+                new Rating(8.5, 1, "no Comment", "shady.azouz@gmail.com")
         );
         when(ratingRepository.findAll()).thenReturn(ratings);
         assertEquals(ratings, ratingService.getAllRatings());
@@ -40,7 +40,7 @@ class RatingServiceTest {
     @Test
     @DisplayName("get rating by userId")
     void getByUserId() {
-        Rating rating = new Rating(8.5, 1, "no Comment", 1);
+        Rating rating = new Rating(8.5, 1, "no Comment", "shady.azouz@gmail.com");
         List<Rating> ratings = Arrays.asList(
                 rating
         );
@@ -51,7 +51,7 @@ class RatingServiceTest {
     @Test
     @DisplayName("Add Rating")
     void addRating() {
-        Rating rating = new Rating(8.5, 1, "no Comment", 1);
+        Rating rating = new Rating(8.5, 1, "no Comment", "shady.azouz@gmail.com");
         assertEquals("Rating Added Successfully", ratingService.addRating(rating));
     }
 }

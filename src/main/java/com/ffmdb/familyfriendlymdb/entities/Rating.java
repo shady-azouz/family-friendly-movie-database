@@ -23,9 +23,9 @@ public class Rating implements Serializable {
     private String comment;
 
     @Column(name = "user_id")
-    private Integer userId;
+    private String userId;
 
-    public Rating(Double stars, Integer movieId, String comment, Integer userId) {
+    public Rating(Double stars, Integer movieId, String comment, String userId) {
         this.stars = stars;
         this.movieId = movieId;
         this.comment = comment;
@@ -74,11 +74,11 @@ public class Rating implements Serializable {
         this.comment = comment;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

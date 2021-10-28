@@ -6,9 +6,9 @@ public class RatingDTO {
     private Double stars;
     private Integer movieId;
     private String comment;
-    private Integer userId;
+    private String userId;
 
-    public RatingDTO(Double stars, Integer movieId, String comment, Integer userId) {
+    public RatingDTO(Double stars, Integer movieId, String comment, String userId) {
         this.stars = stars;
         this.movieId = movieId;
         this.comment = comment;
@@ -48,11 +48,11 @@ public class RatingDTO {
         this.comment = comment;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
