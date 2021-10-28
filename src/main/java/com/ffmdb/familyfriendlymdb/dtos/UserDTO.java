@@ -23,10 +23,11 @@ public class UserDTO {
     @NotEmpty
     private String role;
 
-    public UserDTO(String name, String email, String password, String role) {
+    public UserDTO(String name, String password, String matchingPassword, String email, String role) {
         this.name = name;
-        this.email = email;
         this.password = password;
+        this.matchingPassword = matchingPassword;
+        this.email = email;
         this.role = role;
     }
 

@@ -63,7 +63,7 @@ public class MovieService {
         return movieRepository.findById(id).orElse(null);
     }
 
-    public List<Movie> getMovieByGenre(Integer genreId) {
+    public List<Movie> getMoviesByGenre(Integer genreId) {
         List<Movie> returnMovies = new ArrayList<>();
         for (Movie movie : movieRepository.findAll()) {
             boolean hasGenre = false;
@@ -96,9 +96,5 @@ public class MovieService {
         }
         movieRepository.deleteById(movieId);
         return "Movie Deleted Successfully";
-    }
-
-    public void deleteMovie(Movie movie) {
-        movieRepository.delete(movie);
     }
 }

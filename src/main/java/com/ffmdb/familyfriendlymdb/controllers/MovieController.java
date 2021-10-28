@@ -44,7 +44,7 @@ public class MovieController {
             }
         }
         for (Genre genre : likedGenres) {
-            List<Movie> genreMovies = movieService.getMovieByGenre(genre.getId());
+            List<Movie> genreMovies = movieService.getMoviesByGenre(genre.getId());
             for (Movie movie : genreMovies) {
                 likedMovies.add(movie);
             }

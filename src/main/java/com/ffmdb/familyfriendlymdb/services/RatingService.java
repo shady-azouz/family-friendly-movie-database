@@ -27,7 +27,8 @@ public class RatingService {
         return returnRatings;
     }
 
-    public void addRating(Rating rating) {
+    public String addRating(Rating rating) {
         ratingRepository.save(rating);
+        return "Rating Added Successfully";
     }
 }

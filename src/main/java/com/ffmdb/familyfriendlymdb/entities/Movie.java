@@ -69,7 +69,7 @@ public class Movie implements Serializable {
         this.genres = new ArrayList<>();
     }
 
-    private Movie() {
+    public Movie() {
     }
 
     public Integer getId() {
